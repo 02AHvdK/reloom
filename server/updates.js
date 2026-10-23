@@ -21,13 +21,24 @@ export function compareVersions(a, b) {
   return 0;
 }
 export async function checkUpdates(currentVersion, request = fetch) {
+  let releases;
+  try {
   const response = await request(`https://api.github.com/repos/${repository}/releases?per_page=100`, {
     headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'RELOOM-update-check' },
     signal: AbortSignal.timeout(8000), redirect: 'error',
   });
   if (!response.ok) throw new Error(response.status === 403 || response.status === 429 ? 'GitHub 请求受限，请稍后重试' : '暂时无法连接 GitHub 发布服务');
-  const releases = await response.json();
+  releases = await response.json();
   if (!Array.isArray(releases)) throw new Error('发布服务返回了无效数据');
+  } catch (originalError) {
+    try {
+      const fallback = await request(`https://raw.githubusercontent.com/${repository}/main/releases.json`, {signal:AbortSignal.timeout(4000),redirect:'error'});
+      if (!fallback.ok) throw originalError;
+      const manifest = await fallback.json();
+      if (!Array.isArray(manifest.releases) || !manifest.releases.length) throw originalError;
+      releases = manifest.releases;
+    } catch {throw originalError;}
+  }
   const candidates = releases.filter(r => !r.draft && versionParts(r.tag_name) && (currentVersion.includes('-') || !r.prerelease))
     .sort((a, b) => compareVersions(b.tag_name, a.tag_name));
   const latest = candidates[0];

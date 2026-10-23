@@ -10,7 +10,7 @@ export default function ProjectSupport({open, onClose}) {
   async function check() {
     setBusy(true); setError(''); setResult(null);
     try {
-      const response = await fetch('/api/updates', {signal: AbortSignal.timeout(12000)});
+      const response = await fetch('/api/updates', {signal: AbortSignal.timeout(15000)});
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || '检查失败');
       setResult(data);
