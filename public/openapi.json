@@ -1,0 +1,12 @@
+{
+  "openapi": "3.1.0",
+  "info": {"title":"Agent Atlas Local API","version":"0.1.0","description":"Local parse, export and optional model analysis. Bound to loopback only."},
+  "servers":[{"url":"http://127.0.0.1:4317"}],
+  "paths": {
+    "/api/health":{"get":{"summary":"Service availability","responses":{"200":{"description":"Ready"}}}},
+    "/api/parse":{"post":{"summary":"Parse source into sections and edges","requestBody":{"required":true,"content":{"application/json":{"schema":{"$ref":"#/components/schemas/Document"}}}},"responses":{"200":{"description":"Parsed format, platform, sections, edges and issues"},"400":{"description":"Invalid document"}}}},
+    "/api/export":{"post":{"summary":"Export edited source","requestBody":{"required":true,"content":{"application/json":{"schema":{"allOf":[{"$ref":"#/components/schemas/Document"},{"type":"object","properties":{"mode":{"enum":["source","project","markdown","json","yaml"]},"original":{"type":"string"},"positions":{"type":"object"}}}]}}}},"responses":{"200":{"description":"Object containing name and text"},"400":{"description":"Unsupported conversion or invalid input"}}}},
+    "/api/analyze":{"post":{"summary":"Send document to configured Chat Completions compatible provider","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["baseUrl","model","source"],"properties":{"baseUrl":{"type":"string","format":"uri"},"model":{"type":"string"},"apiKey":{"type":"string","writeOnly":true},"source":{"type":"string","maxLength":120000}}}}}},"responses":{"200":{"description":"Analysis text in content property"},"400":{"description":"Provider, validation or timeout error"}}}}
+  },
+  "components":{"schemas":{"Document":{"type":"object","required":["name","source"],"properties":{"name":{"type":"string","example":"AGENTS.md"},"source":{"type":"string","maxLength":4194304}}}}}
+}

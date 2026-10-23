@@ -1,0 +1,30 @@
+name: 建议反馈与问题报告
+description: 帮助改进 RELOOM
+title: "[反馈] "
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 反馈类型
+      options:
+        - 功能建议
+        - 使用问题 / Bug
+        - 界面与交互
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: RELOOM 版本
+  - type: input
+    id: environment
+    attributes:
+      label: 系统与浏览器
+      placeholder: Windows 11 / Chrome
+  - type: textarea
+    id: detail
+    attributes:
+      label: 说明
+      description: 描述期望行为、实际结果及复现步骤。请勿贴入 API Key 或私人 Agent 内容。
+    validations:
+      required: true
