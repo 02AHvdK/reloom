@@ -40,10 +40,14 @@ Markdown 的树形结构表达章节关系，不代表任意自然语言已经�
 
 ## 验证与发布
 
+目录用途与归档位置见 [项目结构说明](docs/PROJECT_STRUCTURE.md)。
+
 ```sh
 npm test
 npm run build
 ```
+
+`npm run test:browser` 验证更新与反馈界面；`npm run release:web` 构建并打包公开 Web UI（需要 Python 3）。
 
 当前版本见 `package.json`。发布标签使用 `v主版本.次版本.修订号`；正式版本检查忽略草稿和预发布版本。测试版会包含预发布版本。更新仅提示并提供下载链接，不会静默替换本机程序。
 

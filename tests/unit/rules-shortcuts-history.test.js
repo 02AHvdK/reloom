@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { trialRules } from "../src/rules.js";
-import { validateKeys, keyCombo, DEFAULT_KEYS } from "../src/shortcuts.js";
-import { appendRevision, chapterVersions } from "../src/revisions.js";
-import { analyze, insertLinkedParent } from "../src/document.js";
+import { trialRules } from "../../src/rules.js";
+import { validateKeys, keyCombo, DEFAULT_KEYS } from "../../src/shortcuts.js";
+import { appendRevision, chapterVersions } from "../../src/revisions.js";
+import { analyze, insertLinkedParent } from "../../src/document.js";
 test("trial explains any/all matching and leaves natural language unresolved", () => {
   const rows = trialRules(
     [

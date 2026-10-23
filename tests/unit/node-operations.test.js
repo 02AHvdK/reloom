@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { analyze, addRelatedNode, setSectionKind } from "../src/document.js";
+import { analyze, addRelatedNode, setSectionKind } from "../../src/document.js";
 const source =
   "# Agent\r\n\r\n## 执行\r\n原内容。\r\n\r\n## 后续\r\n保留。\r\n";
 test("IF ELSE adds two sibling branches inside source parent and preserves tail", () => {

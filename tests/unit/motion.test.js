@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { sheetSnap, rubberBand } from "../src/motion.js";
+import { sheetSnap, rubberBand } from "../../src/motion.js";
 test("sheet projects release velocity to nearest anchor and stays bounded", () => {
   assert.equal(sheetSnap(20, 0, 1000), 0);
   assert.equal(sheetSnap(20, 2, 1000), 380);

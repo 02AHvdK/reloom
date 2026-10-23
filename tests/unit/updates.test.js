@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {checkUpdates, compareVersions} from '../server/updates.js';
+import {checkUpdates, compareVersions} from '../../server/updates.js';
 const release = (tag_name, prerelease=false) => ({tag_name, prerelease, draft:false});
 const api = data => async (url, options) => {
   assert.ok(['api.github.com','raw.githubusercontent.com'].includes(new URL(url).hostname));

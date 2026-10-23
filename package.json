@@ -7,7 +7,9 @@
     "dev": "node server/index.js --dev",
     "build": "vite build",
     "start": "node server/index.js",
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/unit/*.test.js",
+    "test:browser": "node tests/browser/support-browser.mjs",
+    "release:web": "npm run build && python packaging/public_web.py"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

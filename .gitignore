@@ -16,3 +16,7 @@ work-refs.mjs
 tests/fixtures/designer-context.md
 tests/capture-intro.mjs
 public/fonts/Futura-*.ttf
+archive/
+artifacts/
+__pycache__/
+*.pyc

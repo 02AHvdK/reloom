@@ -1,4 +1,4 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {normalizeHex,normalizeAppearance,appearanceTokens,PRESETS,contrast} from '../src/appearance.js';
+import {normalizeHex,normalizeAppearance,appearanceTokens,PRESETS,contrast} from '../../src/appearance.js';
 test('theme validation rejects invalid values and normalizes short HEX',()=>{assert.equal(normalizeHex('#AbC'),'#aabbcc');assert.equal(normalizeHex('red'),null);assert.throws(()=>normalizeAppearance(null));assert.throws(()=>normalizeAppearance({...PRESETS[0],surface:'url(x)'}));});
 test('theme text and primary buttons remain readable on extreme custom colors',()=>{for(const surface of ['#000000','#ffffff','#777777','#ff0000','#00ff00'])for(const accent of ['#ffffff','#000000','#ffff00','#777777']){const t=appearanceTokens({...PRESETS[0],surface,accent});assert.ok(contrast(t.ink,surface)>=4.5);assert.ok(contrast(t.muted,surface)>=4.5);assert.ok(contrast(t.accentInk,surface)>=4.5);assert.ok(contrast(t.onAccent,accent)>=4.5);}});

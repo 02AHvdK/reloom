@@ -20,9 +20,9 @@ try {
   const feedback=await page.getByRole('link',{name:'建议反馈 / 报告问题'}).getAttribute('href');
   assert.equal(new URL(feedback).searchParams.get('version'),'0.18.0');
   assert.equal(new URL(feedback).searchParams.get('template'),'feedback.yml');
-  await mkdir('review-support',{recursive:true});
+  await mkdir('artifacts/reviews/support',{recursive:true});
   await page.waitForTimeout(500);
-  await page.screenshot({path:'review-support/update-dialog.png'});
+  await page.screenshot({path:'artifacts/reviews/support/update-dialog.png'});
   await page.route('**/api/updates',route=>route.fulfill({status:502,json:{error:'offline'}}));
   await page.getByRole('button',{name:'检查更新',exact:true}).click();
   await page.getByText(/未能检查更新/).waitFor();

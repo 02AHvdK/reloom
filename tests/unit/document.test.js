@@ -7,7 +7,7 @@ import {
   exportDocument,
   importFile,
   markdownSections,
-} from "../src/document.js";
+} from "../../src/document.js";
 import { parse } from "yaml";
 test("Markdown preserves front matter, fenced headings and unrelated bytes", () => {
   const s =
@@ -35,7 +35,7 @@ test("tilde fences and long fences ignore heading-like content", () => {
 });
 test("synthetic agent fixture imports and survives an untouched round trip", () => {
   const s = readFileSync(
-    new URL("./fixtures/example-agent.md", import.meta.url),
+    new URL("../fixtures/example-agent.md", import.meta.url),
     "utf8",
   );
   const p = analyze(s, "AGENTS.md");

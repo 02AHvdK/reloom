@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {makeSource,editSourceBlock,attachReference,autoLayout,variableOptions} from '../src/workflowExtras.js';
-import {demoWorkflow,executeWorkflow,serializeWorkflow,parseWorkflow,normalizeWorkflow} from '../src/workflow.js';
+import {makeSource,editSourceBlock,attachReference,autoLayout,variableOptions} from '../../src/workflowExtras.js';
+import {demoWorkflow,executeWorkflow,serializeWorkflow,parseWorkflow,normalizeWorkflow} from '../../src/workflow.js';
 
 test('linked Markdown changes execution and preserves untouched original bytes',async()=>{
  const original='---\r\nname: skill\r\n---\r\n# Rules\r\nKeep {{literal}} intact.\r\n\r\n# Other\r\nDo not change.\r\n';
