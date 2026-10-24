@@ -20,3 +20,7 @@ archive/
 artifacts/
 __pycache__/
 *.pyc
+
+# Public README images
+!docs/images/
+!docs/images/*.png

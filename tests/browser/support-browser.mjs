@@ -1,7 +1,8 @@
 import {chromium} from '@playwright/test';
 import {spawn} from 'node:child_process';
 import assert from 'node:assert/strict';
-import {mkdir} from 'node:fs/promises';
+import {mkdir,readFile} from 'node:fs/promises';
+const pkg=JSON.parse(await readFile(new URL('../../package.json',import.meta.url),'utf8'));
 const port=4336, base=`http://127.0.0.1:${port}`;
 const server=spawn(process.execPath,['server/index.js','--no-open'],{env:{...process.env,PORT:String(port)},stdio:'ignore'});
 let browser;
@@ -18,7 +19,7 @@ try {
   await page.getByRole('button',{name:'检查更新',exact:true}).click();
   await page.getByText('发现新版本 v0.19.0').waitFor();
   const feedback=await page.getByRole('link',{name:'建议反馈 / 报告问题'}).getAttribute('href');
-  assert.equal(new URL(feedback).searchParams.get('version'),'0.18.0');
+  assert.equal(new URL(feedback).searchParams.get('version'),pkg.version);
   assert.equal(new URL(feedback).searchParams.get('template'),'feedback.yml');
   await mkdir('artifacts/reviews/support',{recursive:true});
   await page.waitForTimeout(500);
