@@ -116,8 +116,8 @@ export function readable(color, bg, ratio = 4.5) {
 }
 export function appearanceTokens(value) {
   const c = normalizeAppearance(value);
-  const ink = readable("#2c3028", c.surface, 7);
-  const muted = readable(mix(ink, c.surface, 0.3), c.surface);
+  const ink = readable("#2c3028", c.surface, 12);
+  const muted = readable(mix(ink, c.surface, 0.3), c.surface, 7);
   const accentInk = readable(c.accent, c.surface);
   const accentSoft = mix(c.surface, c.accent, 0.09);
   const raised = mix(c.surface, ink, 0.035);

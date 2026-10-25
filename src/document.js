@@ -1,6 +1,13 @@
 import { treePositions } from "./layout.js";
 import { parseDocument } from "yaml";
 
+// Textareas normalize Windows line endings. Keep a CRLF document in its
+// original convention so a one-line edit does not mark the whole file changed.
+export function restoreEditorNewlines(text, original) {
+  const crlfOnly = original.includes("\r\n") && !/(^|[^\r])\n/.test(original);
+  return crlfOnly ? text.replace(/\r?\n/g, "\r\n") : text;
+}
+
 export const formats = [
   {
     name: "Markdown",

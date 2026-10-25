@@ -19,7 +19,8 @@ files = [root / p for p in ['README.md', 'package.json', 'package-lock.json',
 for folder in ['src', 'server', 'public', 'dist', 'docs', 'tests', 'packaging']:
     files += [p for p in (root / folder).rglob('*') if p.is_file()
               and not p.name.startswith('Futura-') and p.suffix not in ['.pyc']
-              and '__pycache__' not in p.parts and p.name != 'designer-context.md']
+              and '__pycache__' not in p.parts
+              and p.name not in ['designer-context.md', 'HANDOFF.md', 'LOCAL_0.20.0.md']]
 with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED) as archive:
     for path in files:
         archive.write(path, f'{name}/{path.relative_to(root).as_posix()}')

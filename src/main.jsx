@@ -98,6 +98,8 @@ import "./style.css";
 
 import "./expressive.css";
 import "./reloom.css";
+import "./m3-refinement.css";
+import { restoreEditorNewlines } from "./document.js";
 import {
   AppearanceProvider,
   AppearanceButton,
@@ -700,11 +702,6 @@ function App() {
       { duration: matchMedia("(prefers-reduced-motion: reduce)").matches?0:duration },
     );
   }
-  useEffect(() => {
-    if (tab !== "graph") return;
-    const timer = setTimeout(() => focusSection(0), 80);
-    return () => clearTimeout(timer);
-  }, [tab, full, doc?.name]);
   useEffect(() => {
     const unload = (e) => {
       if (!doc) return;
@@ -1551,8 +1548,9 @@ function App() {
                     nodeTypes={nodeTypes}
                     onInit={(i) => {
                       flowRef.current = i;
-                      requestAnimationFrame(() => focusSection(0));
                     }}
+                    fitView
+                    fitViewOptions={{ padding: 0.2, minZoom: 0.05, maxZoom: 0.9 }}
                     onNodeClick={(_, n) => choose(n.id)}
                     snapToGrid={snap}
                     snapGrid={[20, 20]}
@@ -1579,7 +1577,7 @@ function App() {
                       }));
                     }}
                     defaultViewport={{ x: 36, y: 48, zoom: 1 }}
-                    minZoom={0.15}
+                    minZoom={0.05}
                     maxZoom={1.8}
                     onlyRenderVisibleElements
                     nodesConnectable={false}
@@ -1730,7 +1728,7 @@ function App() {
                   aria-label="源文件编辑器"
                   spellCheck="false"
                   value={sourceDraft}
-                  onChange={(e) => setSourceDraft(e.target.value)}
+                  onChange={(e) => setSourceDraft(restoreEditorNewlines(e.target.value, doc.source))}
                 />
               </div>
             ) : (

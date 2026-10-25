@@ -1,6 +1,6 @@
 {
   "name": "agent-atlas",
-  "version": "0.20.0-demo",
+  "version": "0.20.0",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,0 +1,133 @@
+/* 0.20 — shared M3 roles and state shapes for the existing editor. */
+:root {
+  --md-tertiary-container: var(--org-md-tertiary-container);
+  --md-on-tertiary-container: var(--org-md-on-tertiary-container);
+  --m3-shape-small: 12px;
+  --m3-shape-medium: 20px;
+  --m3-shape-large: 32px;
+  --m3-shape-full: 28px;
+  --m3-motion: 220ms cubic-bezier(.2,.8,.2,1);
+}
+::selection { background: var(--md-primary-container); color: var(--md-on-primary-container); }
+input, textarea { caret-color: var(--md-primary); }
+* { scrollbar-color: var(--org-control) transparent; scrollbar-width: thin; }
+:where(button, a, input, textarea, select):focus-visible {
+  outline: 3px solid var(--md-primary);
+  outline-offset: 3px;
+}
+.app-navigation { background: var(--md-ground); }
+.app-navigation button[aria-current="page"] {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+  border-radius: var(--m3-shape-medium);
+}
+.app-navigation button[aria-current="page"] svg { stroke-width: 2.5; }
+.app-navigation .MuiButton-root.import-fab {
+  min-height: 60px;
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+  border-radius: var(--m3-shape-medium);
+}
+.app-navigation .MuiButton-root.import-fab:hover {
+  background: color-mix(in srgb, var(--md-primary) 90%, var(--md-on-primary));
+}
+.navigation-bottom button { font-weight: 500; }
+.app-navigation button[aria-current="page"]:hover {
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
+}
+.topbar h1 { font-weight: 750; letter-spacing: -.025em; }
+.app .MuiButton-root, .MuiDialog-root .MuiButton-root {
+  transition: border-radius var(--m3-motion), background-color 160ms, color 160ms !important;
+}
+.app .MuiButton-root:active:not(:disabled), .MuiDialog-root .MuiButton-root:active:not(:disabled) {
+  border-radius: var(--m3-shape-small);
+}
+.view-tabs, .theme-modes {
+  display: flex;
+  gap: 3px;
+  padding: 0;
+  background: transparent;
+  border-radius: var(--m3-shape-full);
+}
+.view-tabs button, .theme-modes .MuiButton-root {
+  min-height: 44px;
+  border-radius: 8px;
+  background: var(--md-container-high);
+  color: var(--md-ink);
+  transition: border-radius var(--m3-motion), background-color 160ms, color 160ms;
+}
+.view-tabs button:first-child, .theme-modes .MuiButton-root:first-child { border-radius: 28px 8px 8px 28px; }
+.view-tabs button:last-child, .theme-modes .MuiButton-root:last-child { border-radius: 8px 28px 28px 8px; }
+.view-tabs button.active, .view-tabs button.active:hover,
+.theme-modes .MuiButton-root[aria-pressed="true"] {
+  border-radius: var(--m3-shape-full);
+  background: var(--md-primary);
+  color: var(--md-on-primary);
+}
+.view-tabs button:active { border-radius: var(--m3-shape-small); }
+/* A continuous tonal track fills the space around the selected pill. */
+.view-tabs {
+  gap: 0;
+  background: var(--md-container-high);
+}
+.view-tabs button { background: transparent; }
+.view-tabs button:not(.active):hover { background: var(--md-secondary-container); }
+.view-tabs button:focus-visible { outline-offset: -3px; }
+.category-chips button { min-height: 40px; }
+.category-chips button.active {
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
+}
+.overview-lead { border-radius: var(--m3-shape-large); padding: 32px; }
+.overview-lead h2 { font-weight: 750; letter-spacing: -.025em; }
+.overview-metrics > div { background: var(--md-container); border-radius: var(--m3-shape-medium); }
+.overview-metrics > div:last-child { background: var(--md-tertiary-container); color: var(--md-on-tertiary-container); }
+.overview-metrics > div:last-child :is(span, strong, small) { color: inherit; }
+.outline-item.active { background: var(--md-secondary-container); color: var(--md-on-secondary-container); border-radius: 16px; }
+.canvas { border: 1px solid var(--md-outline); background: var(--md-ground); border-radius: var(--m3-shape-medium); }
+.section-node { border-radius: var(--m3-shape-medium); }
+.section-node.selected { background: var(--md-surface); }
+.section-node.selected .node-kind-trigger { background: var(--md-primary-container); color: var(--md-on-primary-container); }
+.react-flow__controls { border-radius: 24px; padding: 4px; background: var(--md-surface); box-shadow: 0 4px 12px #00000014; }
+.react-flow__controls-button { width: 36px; height: 36px; border: 0; border-radius: 20px; background: transparent; color: var(--md-ink); fill: currentColor; }
+.react-flow__controls-button:hover { background: var(--md-primary-container); color: var(--md-on-primary-container); }
+.agent-card { border-radius: var(--m3-shape-large); border: 1px solid var(--md-outline); background: var(--md-surface); }
+.agent-card:focus-within { border-color: var(--md-primary); }
+.card-art { color: var(--md-primary); }
+.agent-card-open h3 { font-weight: 750; }
+.agent-card-open p { line-height: 1.7; }
+.card-edit, .card-delete { width: 44px; height: 44px; }
+.appearance-presets button { border-radius: var(--m3-shape-medium); min-height: 64px; }
+.appearance-presets button[aria-pressed="true"] { background: var(--md-primary-container); color: var(--md-on-primary-container); }
+.MuiDialog-paper.MuiDialog-paper { border-radius: var(--m3-shape-large); }
+.MuiDialogTitle-root { font-weight: 700; }
+.source-view textarea { line-height: 1.8; tab-size: 2; }
+.integration-launch { background: var(--md-tertiary-container); color: var(--md-on-tertiary-container); border: 0; min-height: 48px; }
+.integration-launch span { color: inherit; }
+.workspace-actions > *, .breadcrumb > button { flex-shrink: 0; white-space: nowrap; }
+@media (min-width: 651px) and (max-width: 1250px) {
+  .navigation-bottom button strong { font-size: 11px; white-space: nowrap; }
+}
+@media (max-width: 1000px) {
+  .workspacebar { flex-wrap: wrap; height: auto; gap: 8px; }
+  .workspacebar .breadcrumb { width: 100%; flex: 1 0 100%; }
+  .workspacebar .workspace-actions { width: 100%; justify-content: flex-end; flex-wrap: nowrap; }
+  .connection-indicator span { display: none; }
+  .workspace-actions .MuiButton-root { padding-inline: 12px; }
+}
+@media (hover: hover) {
+  .agent-card:hover { border-color: var(--md-primary); box-shadow: 0 6px 20px #00000012; }
+}
+@media (max-width: 650px) {
+  .overview-lead { padding: 24px 20px; border-radius: 24px; }
+  .view-tabs { width: 100%; }
+  .view-tabs button { flex: 1 0 auto; padding-inline: 10px; }
+  .theme-modes .MuiButton-root { flex: 1; padding-inline: 10px; }
+  .react-flow__controls-button { width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app .MuiButton-root, .MuiDialog-root .MuiButton-root,
+  .view-tabs button, .theme-modes .MuiButton-root { transition: none !important; }
+  .MuiTouchRipple-root { display: none; }
+}

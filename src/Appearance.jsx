@@ -78,8 +78,8 @@ export function AppearanceProvider({ children }) {
       createTheme({
         palette: {
           mode: tokens.isDark ? "dark" : "light",
-          primary: { main: tokens.accent, contrastText: tokens.onAccent },
-          secondary: { main: tokens.accentInk },
+          primary: { main: tokens.mdPrimary, contrastText: tokens.mdOnPrimary },
+          secondary: { main: tokens.mdSecondary, contrastText: tokens.mdOnSecondary },
           background: { default: tokens.background, paper: tokens.surface },
           text: { primary: tokens.ink, secondary: tokens.muted },
         },
@@ -92,7 +92,7 @@ export function AppearanceProvider({ children }) {
         components: {
           MuiButton: {
             defaultProps: { disableElevation: true },
-            styleOverrides: { root: { minHeight: 44, borderRadius: 24 } },
+            styleOverrides: { root: { minHeight: 44, borderRadius: 24, paddingInline: 20 } },
           },
           MuiTextField: {
             defaultProps: {
@@ -102,7 +102,7 @@ export function AppearanceProvider({ children }) {
           },
           MuiMenu: {defaultProps:{transitionDuration:100}},
           MuiDialog: {defaultProps:{transitionDuration:180}},
-          MuiButtonBase: {defaultProps:{disableRipple:true}},
+          MuiButtonBase: {defaultProps:{disableRipple:false}},
           MuiTooltip: { defaultProps: { arrow: false } },
         },
       }),
